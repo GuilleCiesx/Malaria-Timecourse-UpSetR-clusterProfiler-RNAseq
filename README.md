@@ -14,11 +14,21 @@ El objetivo principal es rastrear la evolución temporal de la expresión génic
 ## ⚙️ Metodología y Herramientas Analíticas
 Para garantizar la robustez estadística y la interpretabilidad biológica, el pipeline se dividió en dos fases:
 
-1. **Modelado Estadístico (`edgeR`):** Se ajustaron modelos lineales generalizados (GLM) basados en cuasi-verosimilitud (`glmQLFit`) con el parámetro `robust = TRUE` para controlar la alta variabilidad biológica intrínseca a los modelos *in vivo*. Se evaluó la calidad del ajuste mediante gráficos de dispersión biológica (BCV) y QL-Dispersion.
-2. **Visualización Compleja y Ontología (`UpSetR` y `clusterProfiler`):** Tradicionalmente, las intersecciones de conjuntos genéticos se han representado mediante diagramas de Venn o Euler. Sin embargo, estas representaciones resultan inadecuadas y difíciles de interpretar cuando se maneja un número elevado de conjuntos experimentales (Conway et al., 2017). Para superar esta limitación geométrica, se implementó el paquete `UpSetR`, empleando una visualización escalable basada en matrices. Esto permitió integrar el *Log2 Fold Change* del pico inflamatorio (Día 7) como diagramas de cajas superpuestos. Finalmente, se mapearon las firmas genéticas a la base de datos *Gene Ontology (GO)*.
+**Modelado Estadístico (`edgeR`):** Se ajustaron modelos lineales generalizados (GLM) basados en cuasi-verosimilitud (`glmQLFit`) con el parámetro `robust = TRUE` para controlar la alta variabilidad biológica intrínseca a los modelos *in vivo*. Se evaluó la calidad del ajuste mediante gráficos de dispersión biológica (BCV) y QL-Dispersion.
+
+Dada la alta variabilidad intrínseca de los modelos de infección *in vivo*, el control de la dispersión es un paso crítico antes de evaluar la expresión diferencial. 
+
+1. **Variabilidad Biológica (BCV):** El gráfico de dispersión (izquierda) muestra el Coeficiente de Variación Biológica. Como es esperable en tejido pulmonar completo sometido a una infección sistémica, la dispersión general es alta. 
+2. **Ajuste de Cuasi-verosimilitud (QL):** Para evitar una tasa elevada de falsos positivos (genes que parecen alterados solo por ruido biológico), se aplicó el modelo estadístico robusto de `edgeR` (derecha). Este método "comprime" las estimaciones de dispersión individuales hacia una tendencia general (línea azul), penalizando los genes con variabilidad anómala.
+
+<p align="center">
+  <img src="results/plots/QC_plot_BCV.png" width="45%" />
+  <img src="results/plots/QC_plot_QLDisp.png" width="45%" />
+</p>
+ 
+ **Visualización Compleja y Ontología (`UpSetR` y `clusterProfiler`):** Tradicionalmente, las intersecciones de conjuntos genéticos se han representado mediante diagramas de Venn o Euler. Sin embargo, estas representaciones resultan inadecuadas y difíciles de interpretar cuando se maneja un número elevado de conjuntos experimentales (Conway et al., 2017). Para superar esta limitación geométrica, se implementó el paquete `UpSetR`, empleando una visualización escalable basada en matrices. Esto permitió integrar el *Log2 Fold Change* del pico inflamatorio (Día 7) como diagramas de cajas superpuestos. Finalmente, se mapearon las firmas genéticas a la base de datos *Gene Ontology (GO)*.
 
 ---
-
 ## 📊 Resultados Clave: La evolución de la patología
 
 ### 1. La Respuesta Hiperinflamatoria Tardía (Sobreexpresión)
@@ -49,6 +59,7 @@ El Análisis de Enriquecimiento (GO) reveló una clara transición en la fisiolo
 Todo el análisis ha sido programado en R. Para reproducir los resultados:
 1. Clona este repositorio.
 2. Ejecuta los scripts en la carpeta `code/` en orden:
+   * `00_instalar_dependencias.R`   
    * `01_analisis_temporal_malaria.R`
    * `02_analisis_avanzado_y_ontologia.R`
 
