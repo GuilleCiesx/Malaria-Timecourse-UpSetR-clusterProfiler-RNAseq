@@ -70,17 +70,35 @@ Este análisis complementa y valida los hallazgos del estudio original de Chen e
 
 ---
 
-## 💻 Reproducibilidad y Estructura del Repositorio
-Todo el análisis ha sido programado en R. Para reproducir los resultados:
-1. Clona este repositorio.
-2. Ejecuta los scripts en la carpeta `code/` en orden:
-   * `00_instalar_dependencias.R`   
-   * `01_analisis_temporal_malaria.R`
-   * `02_analisis_avanzado_y_ontologia.R`
-   * `03_validacion_candidatos.R`
+## 💻 Reproducibilidad y Uso del Repositorio
+
+Para garantizar que cualquier investigador pueda replicar este análisis desde cero, el repositorio ha sido estructurado siguiendo estándares estrictos. 
+
+> **Nota sobre los Datos Crudos:** Por restricciones de tamaño en GitHub, la matriz original de conteos no está incluida en este repositorio (se ignora mediante `.gitignore`). Debes descargarla manualmente siguiendo el paso 2.
+
+
+### Instrucciones paso a paso:
+
+1. **Clonar el repositorio localmente:** `git clone`
+2. **Preparar los datos originales (GEO):**
+	- Crea una carpera llamada `data/` en el directorio principal del proyecto clonado.
+	-  Accede a la base de datos NCBI GEO y descarga la matriz de conteos del proyecto **([GSE279789](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE279789))**.
+    - Guarda el archivo descargado dentro de la carpeta `data/` con el nombre exacto de `GSE279789_raw_counts.txt`.
+3. **Configurar el entorno (RStudio).*:
+    - Abre los scripts en RStudio.
+    - Es **imprescindible** establecer la carpeta `code/` como tu Directorio de Trabajo para que las rutas relativas funcionen correctamente. Puedes hacerlo desde el menú superior: _Session > Set Working Directory > To Source File Location_.
+
+4. **Ejecutar el Pipeline Analítico:** Lanza los scripts secuencialmente:
+    
+    - `00_instalar_dependencias.R`: Escanea tu sistema e instala automáticamente los paquetes de CRAN y Bioconductor necesarios.
+        
+    - `01_analisis_temporal_malaria.R`: Procesa los datos crudos, ajusta el modelo estadístico robusto (`edgeR`) y exporta las listas de genes.
+        
+    - `02_analisis_avanzado_y_ontologia.R`: Construye las matrices booleanas, genera las visualizaciones `UpSetR` y ejecuta el análisis de ontología (`clusterProfiler`).
+        
+    - `03_validacion_candidatos.R`: Script de validación para rastrear las firmas de Interferón y fenotipos T/Monocitos descritos en la literatura.
 
 ---
-
 ## 📚 Referencias y Bibliografía
 Este análisis se apoya en el desarrollo metodológico de las siguientes herramientas y publicaciones:
 * **UpSetR:** Conway, J. R., Lex, A., & Gehlenborg, N. (2017). UpSetR: an R package for the visualization of intersecting sets and their properties. *Bioinformatics*, 33(18), 2938-2940.
