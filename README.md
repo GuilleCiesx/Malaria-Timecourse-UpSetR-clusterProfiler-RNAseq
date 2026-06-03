@@ -52,6 +52,21 @@ El Análisis de Enriquecimiento (GO) reveló una clara transición en la fisiolo
   <img src="results/plots/GO_Dotplot_Core_UP.png" width="45%" />
   <img src="results/plots/GO_Dotplot_Respuesta_Tardia.png" width="45%" />
 </p>
+### 4. Discusión y Contraste con la Literatura Original
+Este análisis complementa y valida los hallazgos del estudio original de Chen et al. (2026), aportando un enfoque metodológico alternativo centrado en **intersecciones booleanas estrictas** (`UpSetR`):
+* **Estrategia Analítica:** Mientras que el estudio original abordó las dinámicas temporales mediante agrupamiento difuso (*soft clustering* con `Mfuzz`) y normalización con `DESeq2`, el pipeline presentado en este proyecto implementó modelos cuasi-verosímiles robustos (`edgeR`) combinados con matrices de atributos (`UpSetR`). Esta aproximación geométrica ha permitido aislar de forma exacta el "núcleo duro" de genes constitutivamente alterados frente a las respuestas tardías, aportando una resolución temporal sólida.
+* **Consenso Biológico (El rol del Interferón y las Células T):** El artículo original identifica la señalización de IFN-$\gamma$ en las células T y su interacción con los monocitos como el motor de la patología pulmonar. Las firmas ontológicas  identificadas en este pipeline respaldan esta hipótesis de manera secuencial:
+	1. El núcleo temprano (D3-D13) capturó una firma inequívoca de **toxicidad mediada por leucocitos** y **respuesta a interferón**, mapeando la activación inicial de las células T (ej. *leukocyte mediated cytotoxicity* y *response to interferon-beta*).
+	2. La fracción tardía (D7-D13) reveló la transición hacia una **respuesta hiperinflamatoria desregulada** y de inmunidad adaptativa, coincidiendo con el reclutamiento de monocitos proinflamatorios (CD8+ Ly6C+) descrito por los autores como responsable del colapso del órgano (ej. *regulation of inflammatory response* y *adaptive immune response*).
+	3. **Validación de Candidatos Clave:** Se desarrolló un script de validación booleana (`03_validacion_candidatos.R`) para rastrear los marcadores específicos mencionados en el estudio original. Los resultados confirmaron la activación constitutiva del **Interferón-gamma (Ifng)** desde el Día 3, y la llegada simultánea de las firmas de **Células T (Cd8a, Cd8b1)** y **Monocitos (Ly6c1/2)** a partir del Día 5, momento exacto en el que se detona la patología tisular:
+
+| Gen | D03 | D05 | D07 | D09 | D11 | D13 | Perfil Biológico |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Ifng** | 1 | 1 | 1 | 1 | 1 | 1 | Señalización proinflamatoria constitutiva |
+| **Cd8a** | 0 | 1 | 1 | 1 | 1 | 1 | Marcador de Células T (Inmunidad Adaptativa) |
+| **Cd8b1** | 0 | 1 | 1 | 1 | 1 | 1 | Marcador de Células T |
+| **Ly6c1** | 0 | 1 | 1 | 0 | 1 | 0 | Monocitos proinflamatorios (Fluctuante) |
+| **Ly6c2** | 1 | 1 | 1 | 1 | 1 | 1 | Monocitos proinflamatorios (Constitutivo) |
 
 ---
 
@@ -62,6 +77,7 @@ Todo el análisis ha sido programado en R. Para reproducir los resultados:
    * `00_instalar_dependencias.R`   
    * `01_analisis_temporal_malaria.R`
    * `02_analisis_avanzado_y_ontologia.R`
+   * `03_validacion_candidatos.R`
 
 ---
 
