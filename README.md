@@ -29,7 +29,7 @@ Dada la alta variabilidad intrínseca de los modelos de infección *in vivo*, el
  **Visualización Compleja y Ontología (`UpSetR` y `clusterProfiler`):** Tradicionalmente, las intersecciones de conjuntos genéticos se han representado mediante diagramas de Venn o Euler. Sin embargo, estas representaciones resultan inadecuadas y difíciles de interpretar cuando se maneja un número elevado de conjuntos experimentales (Conway et al., 2017). Para superar esta limitación geométrica, se implementó el paquete `UpSetR`, empleando una visualización escalable basada en matrices. Esto permitió integrar el *Log2 Fold Change* del pico inflamatorio (Día 7) como diagramas de cajas superpuestos. Finalmente, se mapearon las firmas genéticas a la base de datos *Gene Ontology (GO)*.
 
 ---
-## 📊 Resultados Clave: La evolución de la patología
+## 📊 Resultados Clave: La Evolución de la Patología
 
 ### 1. La Respuesta Hiperinflamatoria Tardía (Sobreexpresión)
 Al integrar los niveles de expresión (LogFC) del **Día 7** como *atributos* sobre las intersecciones temporales, observamos dos dinámicas clave:
@@ -87,7 +87,7 @@ Para garantizar que cualquier investigador pueda replicar este análisis desde c
 	- Crea una carpera llamada `data/` en el directorio principal del proyecto clonado.
 	-  Accede a la base de datos NCBI GEO y descarga la matriz de conteos del proyecto **([GSE279789](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE279789))**.
     - Guarda el archivo descargado dentro de la carpeta `data/` con el nombre exacto de `GSE279789_raw_counts.txt`.
-3. **Configurar el entorno (RStudio).*:
+3. **Configurar el entorno (RStudio).**:
     - Abre los scripts en RStudio.
     - Es **imprescindible** establecer la carpeta `code/` como tu Directorio de Trabajo para que las rutas relativas funcionen correctamente. Puedes hacerlo desde el menú superior: _Session > Set Working Directory > To Source File Location_.
 
