@@ -10,6 +10,7 @@ dependencies:
   - r-ggplot2
   - r-upsetr
   - bioconductor-edger
+  - bioconductor-limma
   - bioconductor-annotationdbi
   - bioconductor-org.mm.eg.db
   - bioconductor-clusterprofiler
