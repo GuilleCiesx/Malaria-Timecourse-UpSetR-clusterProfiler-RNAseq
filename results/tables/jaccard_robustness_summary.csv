@@ -1,0 +1,13 @@
+"scenario","direction","comparison","jaccard"
+"baseline","UP","D7_vs_D0 / D9_vs_D0",0.672541999449188
+"baseline","UP","D11_vs_D0 / D13_vs_D0",0.767249559441507
+"baseline","DOWN","D7_vs_D0 / D9_vs_D0",0.580875420875421
+"baseline","DOWN","D11_vs_D0 / D13_vs_D0",0.704583566238122
+"strict_fdr","UP","D7_vs_D0 / D9_vs_D0",0.661284781861903
+"strict_fdr","UP","D11_vs_D0 / D13_vs_D0",0.764340825226434
+"strict_fdr","DOWN","D7_vs_D0 / D9_vs_D0",0.530795072788354
+"strict_fdr","DOWN","D11_vs_D0 / D13_vs_D0",0.683922161345173
+"large_effect","UP","D7_vs_D0 / D9_vs_D0",0.695652173913043
+"large_effect","UP","D11_vs_D0 / D13_vs_D0",0.744550669216061
+"large_effect","DOWN","D7_vs_D0 / D9_vs_D0",0.281091370558376
+"large_effect","DOWN","D11_vs_D0 / D13_vs_D0",0.427106553722693
