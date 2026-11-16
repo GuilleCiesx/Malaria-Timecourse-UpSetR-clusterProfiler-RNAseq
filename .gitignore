@@ -1,1 +1,6 @@
 data/
+
+
+# Local R and macOS files
+.Rhistory
+.DS_Store
