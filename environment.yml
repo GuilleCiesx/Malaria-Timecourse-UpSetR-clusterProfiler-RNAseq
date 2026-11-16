@@ -1,0 +1,17 @@
+name: malaria-rnaseq
+
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+
+dependencies:
+  - r-base=4.5
+  - r-ggplot2
+  - r-upsetr
+  - bioconductor-edger
+  - bioconductor-limma
+  - bioconductor-annotationdbi
+  - bioconductor-org.mm.eg.db
+  - bioconductor-clusterprofiler
+  - bioconductor-enrichplot

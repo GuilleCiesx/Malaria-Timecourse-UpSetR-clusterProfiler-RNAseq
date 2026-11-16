@@ -1,0 +1,4 @@
+"scenario","core_up","core_down"
+"baseline",862,129
+"strict_fdr",528,19
+"large_effect",366,17
