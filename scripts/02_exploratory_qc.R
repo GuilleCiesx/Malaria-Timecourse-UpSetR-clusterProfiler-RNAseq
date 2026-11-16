@@ -101,11 +101,14 @@ p_library <- ggplot(sample_qc,
   aes(x = group, y = library_size_millions)
 ) +
   geom_jitter(
+  position = position_jitter(
     width = 0.12,
     height = 0,
-    size = 2.5,
-    alpha = 0.8
-  ) +
+    seed = 42
+  ),
+  size = 2.5,
+  alpha = 0.8
+) +
   stat_summary(
     fun = median,
     geom = "point",
@@ -128,11 +131,14 @@ p_genes <- ggplot(sample_qc,
   aes(x = group, y = detected_genes)
 ) +
   geom_jitter(
+  position = position_jitter(
     width = 0.12,
     height = 0,
-    size = 2.5,
-    alpha = 0.8
-  ) +
+    seed = 42
+  ),
+  size = 2.5,
+  alpha = 0.8
+) +
   stat_summary(
     fun = median,
     geom = "point",
